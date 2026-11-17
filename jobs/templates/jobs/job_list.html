@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jobs - JobGuard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        .navbar {
+            background: #1769e0;
+            color: white;
+            padding: 18px 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .search {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search input {
+            width: 60%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        .search button {
+            padding: 13px 20px;
+            background: #1769e0;
+            color: white;
+            border: none;
+            border-radius: 7px;
+        }
+
+        .job-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .job-card h2 {
+            margin-top: 0;
+            color: #1769e0;
+        }
+
+        .verified {
+            color: #16833b;
+            font-weight: bold;
+        }
+
+        .review {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        .score {
+            margin-top: 8px;
+        }
+
+        .details-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #1769e0;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #1769e0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    🛡️ JobGuard
+</div>
+
+<div class="container">
+
+    <a class="back" href="/">← Home</a>
+
+    <h1>Available Jobs</h1>
+
+    <div class="search">
+        <form method="GET">
+            <input
+                type="text"
+                name="q"
+                placeholder="Search for jobs..."
+                value="{{ request.GET.q }}"
+            >
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% for job in jobs %}
+
+        <div class="job-card">
+
+            <h2>{{ job.title }}</h2>
+
+            <p>
+                <strong>Company:</strong> {{ job.company }}
+            </p>
+
+            <p>
+                <strong>Location:</strong> {{ job.location }}
+            </p>
+
+            <p>
+                <strong>Salary:</strong> {{ job.salary }}
+            </p>
+
+            {% if job.is_verified %}
+
+                <p class="verified">
+                    🛡️ Verified Job
+                </p>
+
+            {% else %}
+
+                <p class="review">
+                    ⚠️ Review Required
+                </p>
+
+            {% endif %}
+
+            <p class="score">
+                Verification Score:
+                <strong>{{ job.verification_score }}/100</strong>
+            </p>
+
+            <a
+                class="details-btn"
+                href="/jobs/{{ job.id }}/"
+            >
+                View Details →
+            </a>
+
+        </div>
+
+    {% empty %}
+
+        <p>No jobs found.</p>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - JobGuard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        .navbar {
+            background: #1769e0;
+            color: white;
+            padding: 20px 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 400px;
+            margin: 60px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1769e0;
+        }
+
+        form p {
+            margin-bottom: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #1769e0;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login a {
+            color: #1769e0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    🛡️ JobGuard
+</div>
+
+<div class="container">
+
+    <h1>Create Account</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+    <div class="login">
+        Already have an account?
+        <a href="/login/">Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>

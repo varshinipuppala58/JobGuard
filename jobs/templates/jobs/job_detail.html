@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ job.title }} - JobGuard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .navbar {
+            background: #1769e0;
+            color: white;
+            padding: 18px 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #1769e0;
+            font-weight: bold;
+        }
+
+        .job-card {
+            background: white;
+            padding: 35px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .job-title {
+            font-size: 32px;
+        }
+
+        .info {
+            margin: 12px 0;
+            font-size: 17px;
+        }
+
+        .verification {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #eaf7ee;
+        }
+
+        .verified {
+            color: #16833b;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .score {
+            font-size: 18px;
+            margin-top: 8px;
+        }
+
+        .risk {
+            color: #16833b;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 13px 25px;
+            background: #1769e0;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    🛡️ JobGuard
+</div>
+
+<div class="container">
+
+    <a class="back" href="/jobs/">← Back to Jobs</a>
+
+    <div class="job-card">
+
+        <h1 class="job-title">{{ job.title }}</h1>
+
+        <p class="info"><strong>Company:</strong> {{ job.company }}</p>
+        <p class="info"><strong>Location:</strong> {{ job.location }}</p>
+        <p class="info"><strong>Salary:</strong> {{ job.salary }}</p>
+
+        <h3>Job Description</h3>
+        <p>{{ job.description }}</p>
+
+        <div class="verification">
+
+            {% if job.is_verified %}
+
+                <div class="verified">
+                    🛡️ Verified Job
+                </div>
+
+                <div class="score">
+                    Verification Score:
+                    <strong>{{ job.verification_score }}/100</strong>
+                </div>
+
+                <p class="risk">
+                    🟢 Low Risk — Job information appears complete.
+                </p>
+
+            {% else %}
+
+                <div class="verified">
+                    ⚠️ Review Required
+                </div>
+
+                <div class="score">
+                    Verification Score:
+                    <strong>{{ job.verification_score }}/100</strong>
+                </div>
+
+                <p>
+                    🟠 Some important job information is missing.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+        {% if job.application_url %}
+            <a class="apply-btn"
+               href="{{ job.application_url }}"
+               target="_blank">
+                Apply Now →
+            </a>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

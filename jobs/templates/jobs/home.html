@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JobGuard - Find Safe Jobs</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #1769e0;
+            color: white;
+            padding: 20px 60px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1769e0, #1e3a8a);
+            color: white;
+            text-align: center;
+            padding: 90px 20px 110px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            margin-bottom: 35px;
+        }
+
+        .search-box {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .search-box form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 17px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 17px 28px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .jobs-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 25px;
+            background: white;
+            color: #1769e0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 55px 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background: white;
+            width: 280px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .feature-card .icon {
+            font-size: 40px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    🛡️ JobGuard
+
+    <span style="float: right; font-size: 16px;">
+
+        {% if user.is_authenticated %}
+            👤 {{ user.username }}
+            &nbsp; | &nbsp;
+            <a href="/jobs/logout/" style="color: white; text-decoration: none;">
+                Logout
+            </a>
+        {% else %}
+            <a href="/jobs/login/" style="color: white; text-decoration: none;">
+                Login
+            </a>
+
+            &nbsp; | &nbsp;
+
+            <a href="/jobs/register/" style="color: white; text-decoration: none;">
+                Register
+            </a>
+        {% endif %}
+
+    </span>
+</div>
+
+<section class="hero">
+
+    <h1>Find Jobs You Can Trust</h1>
+
+    <p>Discover genuine opportunities and apply with confidence.</p>
+
+    <div class="search-box">
+        <form action="/jobs/" method="get">
+            <input type="text" name="q" placeholder="Search for jobs...">
+            <button type="submit">Search 🔍</button>
+        </form>
+    </div>
+
+    <a class="jobs-button" href="/jobs/">
+        View Available Jobs →
+    </a>
+
+</section>
+
+<section class="features">
+
+    <div class="feature-card">
+        <div class="icon">🛡️</div>
+        <h3>Verified Jobs</h3>
+        <p>JobGuard checks important job information and provides a verification score.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon">🔍</div>
+        <h3>Easy Search</h3>
+        <p>Quickly find jobs based on the position you're looking for.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon">💼</div>
+        <h3>Apply With Confidence</h3>
+        <p>Review job details and verification status before applying.</p>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 JobGuard — Find genuine jobs. Apply with confidence.
+</footer>
+
+</body>
+</html>
